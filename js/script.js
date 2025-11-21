@@ -13,7 +13,7 @@ const background = document.getElementById("background");
 const shuffleBtn = document.getElementById("shuffle");
 const loopBtn = document.getElementById("loop");
 const volumeSlider = document.getElementById("volume");
-
+const songListContainer = document.getElementById("song-list");
 let isShuffle = false;
 let isLoop = false;
 
@@ -31,7 +31,7 @@ const songs = [
     path: "media/billi(2).mp3",
     displayName: "NDA",
     artist: "Billi Eilish",
-    cover:  "images/billi2.jpg",
+    cover: "images/billi2.webp",
   },
   {
     path:
@@ -39,7 +39,31 @@ const songs = [
     displayName: "TV",
     artist: "Billi Eilish",
     cover:
-       "images/billi3.jpg",
+      "images/billi3.webp",
+  },
+  {
+    path:
+      "media/billi(4).mp3",
+    displayName: "Bury a Friend",
+    artist: "Billi Eilish",
+    cover:
+      "images/billi4.webp",
+  },
+  {
+    path:
+      "media/billi(5).mp3",
+    displayName: "Everything I Wanted",
+    artist: "Billi Eilish",
+    cover:
+      "images/billi5.webp",
+  },
+  {
+    path:
+      "media/billi(6).mp3",
+    displayName: "Therefore I Am",
+    artist: "Billi Eilish",
+    cover:
+      "images/billi6.webp",
   },
   {
     path:
@@ -47,13 +71,60 @@ const songs = [
     displayName: "Ghatle Amd",
     artist: "Dorcci",
     cover:
-       "images/dorcci.jpg",
+      "images/dorcci.webp",
+  },
+  {
+    path:
+      "media/dorcci2.mp3",
+    displayName: "Before you Gone",
+    artist: "Dorcci",
+    cover:
+      "images/dorcci2.webp",
+  },
+  {
+    path:
+      "media/massari.mp3",
+    displayName: "Real Love",
+    artist: "Massary",
+    cover:
+      "images/msri.webp",
+  },
+  {
+    path:
+      "media/pakzad.mp3",
+    displayName: "Bombe",
+    artist: "Sohrab Pakzad",
+    cover:
+      "images/pkzd.webp",
+  },
+  {
+    path:
+      "media/poobon1.mp3",
+    displayName: "12:34",
+    artist: "Poobon",
+    cover:
+      "images/poobon.webp",
+  },
+  {
+    path:
+      "media/poobon2.mp3",
+    displayName: "Niloofar Abi",
+    artist: "Poobon",
+    cover:
+      "images/poobon2.webp",
   },
   {
     path: "media/lady.mp3",
     displayName: "Die With A Smile",
     artist: "Lady Gaga",
-    cover:"images/lady.jpeg",
+    cover: "images/lady.webp",
+  }
+,
+  {
+    path: "media/beth.mp3",
+    displayName: "Let Me Down Slowly",
+    artist: "Beth",
+    cover: "images/beth.webp",
   }
 ];
 
@@ -168,14 +239,70 @@ function updateProgressBar(e) {
   }
 }
 
-// Set Progress Bar
-function setProgressBar(e) {
-  const width = this.clientWidth;
-  const clickX = e.offsetX;
+let isDragging = false;
+
+progressContainer.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  setProgress(e);
+});
+
+progressContainer.addEventListener("mousemove", (e) => {
+  if (isDragging) {
+    setProgress(e);
+  }
+});
+
+progressContainer.addEventListener("mouseup", (e) => {
+  if (isDragging) {
+    setProgress(e);
+    isDragging = false;
+  }
+});
+
+progressContainer.addEventListener("mouseleave", () => {
+  isDragging = false;
+});
+
+function setProgress(e) {
+  const rect = progressContainer.getBoundingClientRect();
+  const offsetX = e.clientX - rect.left;
+  const width = rect.width;
   const duration = music.duration;
-  music.currentTime = (clickX / width) * duration;
+  if (duration) {
+    music.currentTime = (offsetX / width) * duration;
+  }
 }
 
+function renderSongList() {
+  songListContainer.innerHTML = "";
+  songs.forEach((song, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<span>${song.displayName} - ${song.artist}</span>`;
+    if (index === songIndex) li.classList.add("active-song");
+
+    li.onclick = () => {
+      songIndex = index;
+      loadSong(songs[songIndex]);
+      playSong();
+      updateActiveSong();
+    }
+
+    songListContainer.appendChild(li);
+  });
+}
+
+function updateActiveSong() {
+  const lis = songListContainer.querySelectorAll("li");
+  lis.forEach((li, index) => {
+    li.classList.toggle("active-song", index === songIndex);
+  });
+}
+
+renderSongList();
+
+music.addEventListener("ended", () => {
+  if (!isLoop) updateActiveSong();
+});
 // Event Listeners
 prevBtn.addEventListener("click", prevSong);
 nextBtn.addEventListener("click", nextSong);
