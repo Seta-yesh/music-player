@@ -19,6 +19,20 @@ let isLoop = false;
 
 // Music
 const songs = [
+    {
+    path:
+      "media/billi(5).mp3",
+    displayName: "Everything I Wanted",
+    artist: "Billi Eilish",
+    cover:
+      "images/billi5.webp",
+  },
+    {
+    path: "media/billi(2).mp3",
+    displayName: "NDA",
+    artist: "Billi Eilish",
+    cover: "images/billi2.webp",
+  },
   {
     path:
       "media/billi(1).mp3",
@@ -27,12 +41,7 @@ const songs = [
     cover:
       "images/1.webp",
   },
-  {
-    path: "media/billi(2).mp3",
-    displayName: "NDA",
-    artist: "Billi Eilish",
-    cover: "images/billi2.webp",
-  },
+
   {
     path:
       "media/billi(3).mp3",
@@ -49,14 +58,7 @@ const songs = [
     cover:
       "images/billi4.webp",
   },
-  {
-    path:
-      "media/billi(5).mp3",
-    displayName: "Everything I Wanted",
-    artist: "Billi Eilish",
-    cover:
-      "images/billi5.webp",
-  },
+
   {
     path:
       "media/billi(6).mp3",
@@ -85,7 +87,7 @@ const songs = [
     path:
       "media/massari.mp3",
     displayName: "Real Love",
-    artist: "Massary",
+    artist: "Massari",
     cover:
       "images/msri.webp",
   },
@@ -315,7 +317,7 @@ music.addEventListener("ended", () => {
   }
 });
 music.addEventListener("timeupdate", updateProgressBar);
-progressContainer.addEventListener("click", setProgressBar);
+progressContainer.addEventListener("click", setProgress);
 window.onkeyup = (event) => {
   console.log(event);
   event.code == 'Space' ? playHandler() : event.code == "ArrowRight" ? nextSong() : event.code == "ArrowLeft" ? prevSong() : ""

@@ -56,4 +56,4 @@ Feel free to modify and improve the UI or add more features.
 
 This project is open-source and available under the MIT License.
 
-
+email : zeynabjahanara80@gmail.com
