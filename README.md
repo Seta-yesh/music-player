@@ -38,14 +38,6 @@ git clone https://github.com/username/music-player.git
 
 Open index.html in your browser.
 
-Enjoy your music 🎧
-
-📷 Preview
-
-(Add a screenshot here)
-
-
-
 📌 Notes
 
 All songs used in this project must be royalty-free or your own files.
