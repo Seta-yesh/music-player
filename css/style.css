@@ -5,7 +5,7 @@ html, body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden; /* جلوگیری از اسکرول افقی */
+  overflow-x: hidden;
   font-family: 'Nunito', sans-serif;
   font-size: 12px;
   box-sizing: border-box;
@@ -269,13 +269,10 @@ h3 {
   .player-container {
     width: 90%;
   }
+  .content {
+    width: 100%; }
 }
 
-@media (max-width: 420px) {
-  .img-container {
-    width: 90%;
-  }
-}
 
 @media (max-width: 376px) {
   .player-container {
@@ -288,5 +285,11 @@ h3 {
 
   h3 {
     font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  #volume {
+    display: none;
   }
 }
