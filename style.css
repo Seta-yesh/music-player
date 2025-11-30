@@ -192,6 +192,16 @@ h3 {
 #volume {
   width: 100%;
 }
+#volumePopup {
+  position: absolute;
+  bottom: 90px;        /* بسته به طراحی خودت تنظیم کن */
+  right: 40px;         /* کنار دکمه‌ها */
+  padding: 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  display: none;       /* اولش مخفی */
+}
+
 
 .song-list-container {
   width: 90%;
