@@ -354,3 +354,66 @@ h3 {
 #volume {
   width: 140px;
 }
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.volume-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#volume {
+  width: 0;
+  opacity: 0;
+  margin-left: 8px;
+  transition: width 0.45s ease, opacity 0.45s ease;
+}
+
+/* وقتی موس روی ولوم میره */
+.volume-wrapper:hover #volume {
+  width: 120px;
+  opacity: 1;
+}
+/* دسکتاپ: ولوم فعاله  */
+
+/* موبایل */
+@media (max-width: 768px) {
+  .volume-wrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .player-controls {
+    gap: 22px;  
+  }
+
+  .player-controls i {
+    font-size: 28px; 
+    padding: 10px;   
+    border-radius: 12px; 
+  }
+}
+
+.player-controls i {
+  width: 40px;          /* هر دکمه یک اندازه ثابت */
+  height: 40px;
+  display: flex;
+  align-items: center;  /* وسط چین عمودی */
+  justify-content: center; /* وسط چین افقی */
+  font-size: 27px;      /* اندازه یکنواخت آیکون‌ها */
+  opacity: 0.8;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;            /* فاصله یکنواخت بین دکمه‌ها */
+}
+
