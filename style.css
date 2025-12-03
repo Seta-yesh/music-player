@@ -344,3 +344,13 @@ h3 {
   }
 }
 
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+#volume {
+  width: 140px;
+}
